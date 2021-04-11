@@ -1,12 +1,33 @@
 package tree;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Stack;
 
 public class Tree {
     Node root;
+    public Map<Integer,Node> map;
 
     public Tree() {
         root = null;
+        map = new HashMap<>();
+    }
+    void insert(int p,int c){
+        if (map.isEmpty()) {
+            root = new Node(p);
+            root.leftChild = new Node(c);
+            map.put(p, root);
+            map.put(c, root.leftChild);
+        } else if (map.containsKey(p)) {
+            Node curr = map.get(p);
+            if (curr.leftChild == null) {
+                curr.leftChild=new Node(c);
+                map.put(c, curr.leftChild);
+            } else {
+                curr.rightChild = new Node(c);
+                map.put(c, curr.rightChild);
+            }
+        }
     }
 
     void addNode(Node parent, Node child) {
