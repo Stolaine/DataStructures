@@ -12,22 +12,23 @@ public class Tree {
         root = null;
         map = new HashMap<>();
     }
-    void insert(int p,int c){
+
+    void insert(int parent, int child){
+        Node p;
+        Node c = new Node(child);
         if (map.isEmpty()) {
-            root = new Node(p);
-            root.leftChild = new Node(c);
-            map.put(p, root);
-            map.put(c, root.leftChild);
-        } else if (map.containsKey(p)) {
-            Node curr = map.get(p);
-            if (curr.leftChild == null) {
-                curr.leftChild=new Node(c);
-                map.put(c, curr.leftChild);
-            } else {
-                curr.rightChild = new Node(c);
-                map.put(c, curr.rightChild);
-            }
+            p = new Node(parent);
+            root = p;
+        } else {
+            p = map.get(parent);
         }
+        if (p.leftChild == null) {
+            p.leftChild = c;
+        } else {
+            p.rightChild = c;
+        }
+        map.put(parent, p);
+        map.put(child, c);
     }
 
     void addNode(Node parent, Node child) {
