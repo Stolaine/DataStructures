@@ -214,4 +214,23 @@ public class Tree {
         }
         return found;
     }
+
+    void levelOrderInsertion(int data) {
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            Node curr = queue.poll();
+            if (curr.leftChild != null) {
+                queue.add(curr.leftChild);
+            } else {
+                curr.leftChild = new Node(data);
+                break;
+            }
+            if (curr.rightChild != null) {
+                queue.add(curr.rightChild);
+            } else {
+                curr.rightChild = new Node(data);
+            }
+        }
+    }
 }
