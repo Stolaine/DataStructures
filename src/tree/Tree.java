@@ -194,4 +194,24 @@ public class Tree {
         }
         return max;
     }
+
+    boolean search(int data) {
+        boolean found = false;
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            Node curr = queue.poll();
+            if (curr.data == data) {
+                found = true;
+                break;
+            }
+            if (curr.leftChild != null) {
+                queue.add(curr.leftChild);
+            }
+            if (curr.rightChild != null) {
+                queue.add(curr.rightChild);
+            }
+        }
+        return found;
+    }
 }

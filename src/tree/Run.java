@@ -15,6 +15,6 @@ public class Run {
             int v = sc.nextInt();
             tree.insert(u,v);
         }
-        System.out.println(tree.findMaxRec(tree.root));
+        System.out.println(tree.search(5));
     }
 }
