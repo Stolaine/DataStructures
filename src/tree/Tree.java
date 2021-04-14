@@ -1,8 +1,6 @@
 package tree;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Stack;
+import java.util.*;
 
 public class Tree {
     Node root;
@@ -67,6 +65,15 @@ public class Tree {
         System.out.println();
     }
 
+    private void recPreOrder(Node node) {
+        if (node == null) {
+            return;
+        }
+        System.out.print("" + node.data + " ");
+        recPreOrder(node.leftChild);
+        recPreOrder(node.rightChild);
+    }
+
     void preOrderNonRecursive() {
         Stack<Node> stack = new Stack<>();
         stack.push(root);
@@ -83,12 +90,72 @@ public class Tree {
         System.out.println();
     }
 
-    private void recPreOrder(Node node) {
-        if (node == null) {
-            return;
+    void inOrderNonRecursive() {
+        Stack<Node> stack = new Stack<>();
+        boolean done = false;
+        Node curr = root;
+        while (!done) {
+            if (curr != null) {
+                // if the node exists put it in the stack and go for left child
+                stack.push(curr);
+                curr = curr.leftChild;
+            } else {
+                // if the node does not exists i.e. we are at the leaf node
+                if (stack.isEmpty()) {
+                    // is the stack empty i.e. all nodes are processed
+                    done = true;
+                } else {
+                    // for the current node - all left children are processed so process current node
+                    curr = stack.pop();
+                    System.out.print("" + curr.data + " ");
+                    curr = curr.rightChild;
+                }
+            }
         }
-        System.out.print("" + node.data + " ");
-        recPreOrder(node.leftChild);
-        recPreOrder(node.rightChild);
+    }
+
+    void postOrderNonRecursive() {
+        Stack<Node> stack = new Stack<>();
+        stack.push(root);
+        Node prev = null;
+        while (!stack.isEmpty()) {
+            Node curr = stack.peek();
+            // either prev is null i.e. curr is root node
+            // or curr is left child of prev
+            // or curr is right child of prev
+            // these conditions mean that the node's children has not been processed yet.
+            if (prev == null || prev.leftChild == curr || prev.rightChild == curr) {
+                if (curr.leftChild != null) {
+                    stack.push(curr.leftChild);
+                } else if (curr.rightChild != null) {
+                    stack.push(curr.rightChild);
+                }
+            } else if (curr.leftChild == prev) {
+                // the left child of curr has been processed.
+                if (curr.rightChild != null) {
+                    stack.push(curr.rightChild);
+                }
+            } else {
+                // children are processed time to process parent
+                System.out.print(curr);
+                stack.pop();
+            }
+            prev = curr;
+        }
+    }
+
+    void levelOrderTraversal() {
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            Node curr = queue.poll();
+            if (curr.leftChild != null) {
+                queue.add(curr.leftChild);
+            }
+            if (curr.rightChild != null) {
+                queue.add(curr.rightChild);
+            }
+            System.out.print(curr);
+        }
     }
 }
