@@ -158,4 +158,40 @@ public class Tree {
             System.out.print(curr);
         }
     }
+
+    int findMax() {
+        Stack<Node> stack = new Stack<>();
+        stack.push(root);
+        int max = Integer.MIN_VALUE;
+        while (!stack.isEmpty()) {
+            Node curr = stack.pop();
+            if (max < curr.data) {
+                max = curr.data;
+            }
+            if (curr.leftChild != null) {
+                stack.push(curr.leftChild);
+            }
+            if (curr.rightChild != null) {
+                stack.push(curr.rightChild);
+            }
+        }
+        return max;
+    }
+
+    int findMaxRec(Node parent) {
+        int max = parent.data;
+        if (parent.leftChild != null) {
+            int temp = findMaxRec(parent.leftChild);
+            if (temp>max) {
+                max = temp;
+            }
+        }
+        if (parent.rightChild != null) {
+            int temp = findMaxRec(parent.rightChild);
+            if (temp>max) {
+                max = temp;
+            }
+        }
+        return max;
+    }
 }
