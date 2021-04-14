@@ -250,4 +250,30 @@ public class Tree {
         }
         return size;
     }
+
+    void reverseLevelOrder() {
+        Stack<Node> stack = new Stack<>();
+        stack.push(root);
+        Stack<Node> reverseStack = new Stack<>();
+        reverseStack.push(root);
+        while (!stack.isEmpty()) {
+            Node curr = stack.pop();
+            if (curr.rightChild != null) {
+                reverseStack.push(curr.rightChild);
+            }
+            if (curr.leftChild != null) {
+                reverseStack.push(curr.leftChild);
+            }
+            if (curr.leftChild != null) {
+                stack.push(curr.leftChild);
+            }
+            if (curr.rightChild != null) {
+                stack.push(curr.rightChild);
+            }
+        }
+        while (!reverseStack.isEmpty()) {
+            Node curr = reverseStack.pop();
+            System.out.print(curr);
+        }
+    }
 }

@@ -15,6 +15,6 @@ public class Run {
             int v = sc.nextInt();
             tree.insert(u,v);
         }
-        System.out.println(tree.getSize());
+        tree.reverseLevelOrder();
     }
 }
