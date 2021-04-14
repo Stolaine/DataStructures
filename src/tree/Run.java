@@ -15,7 +15,6 @@ public class Run {
             int v = sc.nextInt();
             tree.insert(u,v);
         }
-        tree.levelOrderInsertion(45);
-        tree.levelOrderTraversal();
+        System.out.println(tree.getSize());
     }
 }

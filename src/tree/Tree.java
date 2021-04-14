@@ -233,4 +233,21 @@ public class Tree {
             }
         }
     }
+
+    int getSize() {
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(root);
+        int size = 0;
+        while (!queue.isEmpty()) {
+            size++;
+            Node curr = queue.poll();
+            if (curr.leftChild != null) {
+                queue.add(curr.leftChild);
+            }
+            if (curr.rightChild != null) {
+                queue.add(curr.rightChild);
+            }
+        }
+        return size;
+    }
 }
