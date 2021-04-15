@@ -3,7 +3,7 @@ package tree;
 import java.util.*;
 
 public class Tree {
-    Node root;
+    public Node root;
     public Map<Integer,Node> map;
 
     public Tree() {
@@ -11,7 +11,7 @@ public class Tree {
         map = new HashMap<>();
     }
 
-    void insert(int parent, int child){
+    public void insert(int parent, int child){
         Node p;
         Node c = new Node(child);
         if (map.isEmpty()) {
