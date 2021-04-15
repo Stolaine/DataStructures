@@ -276,4 +276,76 @@ public class Tree {
             System.out.print(curr);
         }
     }
+
+    int getHeightRecursively(Node parent) {
+        int height = 1;
+        int leftHeight = 0;
+        int rightHeight = 0;
+        if (parent.leftChild != null) {
+            leftHeight = getHeightRecursively(parent.leftChild);
+        }
+        if (parent.rightChild != null) {
+            rightHeight += getHeightRecursively(parent.rightChild);
+        }
+        if (leftHeight == rightHeight || leftHeight > rightHeight) {
+            height += leftHeight;
+        } else if (leftHeight < rightHeight) {
+            height += rightHeight;
+        }
+        return height;
+    }
+
+    int getHeightNonRecursively() {
+        // count the number of nodes in the longest path from root to leaf nodes.
+        Stack<Node> stack = new Stack<>();
+        stack.push(root);
+        Node prev = null;
+        int maxDepth = 0;
+        while (!stack.isEmpty()) {
+            Node curr = stack.peek();
+            if (prev == null || prev.leftChild == curr || prev.rightChild == curr) {
+                if (curr.leftChild != null) {
+                    stack.push(curr.leftChild);
+                } else if (curr.rightChild != null) {
+                    stack.push(curr.rightChild);
+                }
+            } else if (curr.leftChild == prev) {
+                if (curr.rightChild != null) {
+                    stack.push(curr.rightChild);
+                }
+            } else {
+                stack.pop();
+            }
+            prev = curr;
+            if (stack.size() > maxDepth) {
+                maxDepth = stack.size();
+            }
+        }
+        return maxDepth;
+    }
+
+    int getHeightLevelOrder() {
+        // count the number of edges in longest path from root to leaf nodes.
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(root);
+        queue.add(null);
+        int count = 0;
+        while (!queue.isEmpty()) {
+            Node curr = queue.poll();
+            if (curr != null) {
+                if (curr.leftChild != null) {
+                    queue.add(curr.leftChild);
+                }
+                if (curr.rightChild != null) {
+                    queue.add(curr.rightChild);
+                }
+            } else {
+                if (!queue.isEmpty()) {
+                    count++;
+                    queue.add(null);
+                }
+            }
+        }
+        return count;
+    }
 }
