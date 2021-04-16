@@ -19,9 +19,7 @@ public class Solution {
             int v = sc.nextInt();
             tree.insert(u,v);
         }
-        P15 obj = new P15();
-        tree.preOrderRecursive();
-        obj.deleteNode(tree, 1);
-        tree.preOrderRecursive();
+        Problem problem = new Problem();
+        System.out.println(problem.getLeafNodeCount(tree));
     }
 }
