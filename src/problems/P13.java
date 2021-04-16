@@ -7,7 +7,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class P13 {
-    static int getMininumHeight(Tree tree) {
+    int getMininumHeight(Tree tree) {
         Queue<Node> queue = new LinkedList<>();
         queue.add(tree.root);
         queue.add(null);
