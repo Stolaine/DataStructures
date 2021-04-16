@@ -60,7 +60,7 @@ public class Tree {
         }
     }
 
-    void preOrderRecursive() {
+    public void preOrderRecursive() {
         recPreOrder(root);
         System.out.println();
     }

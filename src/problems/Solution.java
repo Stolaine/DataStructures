@@ -19,7 +19,9 @@ public class Solution {
             int v = sc.nextInt();
             tree.insert(u,v);
         }
-        P14 obj = new P14();
-        System.out.println(obj.findDeepestNode(tree));
+        P15 obj = new P15();
+        tree.preOrderRecursive();
+        obj.deleteNode(tree, 1);
+        tree.preOrderRecursive();
     }
 }
