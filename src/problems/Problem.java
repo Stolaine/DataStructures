@@ -7,13 +7,14 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class Problem {
-    int getFullNodeCount(Tree tree) {
+    int getHalfNodeCount(Tree tree) {
         int count = 0;
         Queue<Node> queue = new LinkedList<>();
         queue.add(tree.root);
         while (!queue.isEmpty()) {
             Node curr = queue.poll();
-            if (curr.leftChild != null && curr.rightChild != null) {
+            if ((curr.leftChild != null && curr.rightChild == null) ||
+                    (curr.leftChild == null && curr.rightChild != null)) {
                 count++;
             }
             if (curr.leftChild != null) {

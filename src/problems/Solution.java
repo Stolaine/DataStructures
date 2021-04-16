@@ -20,6 +20,6 @@ public class Solution {
             tree.insert(u,v);
         }
         Problem problem = new Problem();
-        System.out.println(problem.getFullNodeCount(tree));
+        System.out.println(problem.getHalfNodeCount(tree));
     }
 }
