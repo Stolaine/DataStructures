@@ -349,15 +349,27 @@ public class Tree {
         return count;
     }
 
-    boolean isBST(Node root) {
-        boolean bst = true;
+    public boolean isBST(Node root) {
         if (root != null) {
-
+            int leftMax = root.leftChild == null ? Integer.MIN_VALUE : findMax(root.leftChild);
+            int rightMin = root.rightChild == null ? Integer.MAX_VALUE : findMin(root.rightChild);
+            if (root.leftChild != null && root.data<root.leftChild.data) {
+                return false;
+            }
+            if (root.rightChild != null && root.data>root.rightChild.data) {
+                return false;
+            }
+            if (root.data>leftMax && root.data<rightMin) {
+                return isBST(root.leftChild) && isBST(root.rightChild);
+            } else {
+                return false;
+            }
+        } else {
+            return true;
         }
-        return bst;
     }
 
-    int findMax(Node root) {
+    public int findMax(Node root) {
         Stack<Node> stack = new Stack<>();
         stack.push(root);
         int max = Integer.MIN_VALUE;
@@ -376,13 +388,13 @@ public class Tree {
         return max;
     }
 
-    int findMin(Node root) {
+    public int findMin(Node root) {
         Stack<Node> stack = new Stack<>();
         stack.push(root);
         int min = Integer.MAX_VALUE;
         while(!stack.isEmpty()) {
             Node curr = stack.pop();
-            if (curr.data > min) {
+            if (curr.data < min) {
                 min = curr.data;
             }
             if (curr.leftChild != null) {

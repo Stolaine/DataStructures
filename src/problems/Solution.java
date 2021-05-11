@@ -14,12 +14,17 @@ public class Solution {
         System.setIn(new FileInputStream("C:\\Users\\shesh\\IdeaProjects\\DataStructures\\src\\interaction\\input.txt"));
         System.setOut(new PrintStream(new FileOutputStream("C:\\Users\\shesh\\IdeaProjects\\DataStructures\\src\\interaction\\output.txt")));
         Scanner sc = new Scanner(System.in);
-        BST bst = new BST();
+        Tree tree = new Tree();
         int n = sc.nextInt();
-        for (int i=0; i<n; i++) {
-            int data = sc.nextInt();
-            bst.insert(data);
+        for (int i=0; i<n-1; i++) {
+            int u = sc.nextInt();
+            int v = sc.nextInt();
+            tree.insert(u, v);
         }
-        bst.preOrderRecursive();
+        tree.preOrderRecursive();
+        System.out.println(tree.findMax(tree.root));
+        System.out.println(tree.findMin(tree.root));
+        System.out.println(tree.isBST(tree.root));
+        // 10 3 2 1 4 14 11
     }
 }
