@@ -1,4 +1,4 @@
-package tree;
+package nonLinear.tree;
 
 import java.util.*;
 

@@ -1,8 +1,8 @@
 package problems;
 
 import javafx.util.Pair;
-import tree.Node;
-import tree.Tree;
+import nonLinear.tree.Node;
+import nonLinear.tree.Tree;
 
 import java.util.LinkedList;
 import java.util.Queue;

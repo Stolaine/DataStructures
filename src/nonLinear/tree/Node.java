@@ -1,4 +1,4 @@
-package tree;
+package nonLinear.tree;
 
 public class Node {
     public int data;
