@@ -348,4 +348,50 @@ public class Tree {
         }
         return count;
     }
+
+    boolean isBST(Node root) {
+        boolean bst = true;
+        if (root != null) {
+
+        }
+        return bst;
+    }
+
+    int findMax(Node root) {
+        Stack<Node> stack = new Stack<>();
+        stack.push(root);
+        int max = Integer.MIN_VALUE;
+        while(!stack.isEmpty()) {
+            Node curr = stack.pop();
+            if (curr.data > max) {
+                max = curr.data;
+            }
+            if (curr.leftChild != null) {
+                stack.push(curr.leftChild);
+            }
+            if (curr.rightChild != null) {
+                stack.push(curr.rightChild);
+            }
+        }
+        return max;
+    }
+
+    int findMin(Node root) {
+        Stack<Node> stack = new Stack<>();
+        stack.push(root);
+        int min = Integer.MAX_VALUE;
+        while(!stack.isEmpty()) {
+            Node curr = stack.pop();
+            if (curr.data > min) {
+                min = curr.data;
+            }
+            if (curr.leftChild != null) {
+                stack.push(curr.leftChild);
+            }
+            if (curr.rightChild != null) {
+                stack.push(curr.rightChild);
+            }
+        }
+        return min;
+    }
 }
